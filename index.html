@@ -1,0 +1,206 @@
+<!doctype html>
+<html lang="pt-BR"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Mestre da Tabuada</title>
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;700;800&display=swap" rel="stylesheet">
+<style>
+:root{--card:#fff;--ink:#22304a;--soft:#eef5ff;--line:#c9dcf0;--y:#ffc933;--yd:#d9a000;--ok:#1fa968;--bad:#e5484d;--bl:#3aa0ff;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media(prefers-color-scheme:dark){:root:not([data-theme="light"]){--card:#1f2f52;--ink:#f1f5ff;--soft:#2a3d66;--line:#3a4f7c}}
+:root[data-theme="dark"]{--card:#1f2f52;--ink:#f1f5ff;--soft:#2a3d66;--line:#3a4f7c}
+html,body{margin:0;min-height:100%}
+body{font-family:'Baloo 2',ui-rounded,'Trebuchet MS',system-ui,sans-serif;font-weight:600;color:#fff;background:linear-gradient(160deg,#7ed957,#2e9e5b) fixed;font-size:18px}
+#top{display:flex;gap:10px;align-items:center;justify-content:center;padding:10px;flex-wrap:wrap}
+#top span:nth-child(2){font-size:32px}
+main{max-width:760px;margin:0 auto;padding:6px 14px 40px}
+h1{font-size:clamp(32px,8vw,52px);margin:4px 0;line-height:1;text-shadow:0 3px 0 rgba(0,0,0,.25)}
+h2{text-shadow:0 2px 0 rgba(0,0,0,.25);margin:8px 0}
+.panel h2{text-shadow:none;color:var(--ink)}
+.sub{margin:0 0 10px;text-shadow:0 2px 0 rgba(0,0,0,.25);font-size:20px}
+.hero{text-align:center}
+.mascot{font-size:84px;line-height:1.1;animation:bob 2.4s ease-in-out infinite;display:inline-block}
+.hop{animation:hop .5s}.shake{animation:shake .4s}
+@keyframes bob{50%{transform:translateY(-8px)}}
+@keyframes hop{40%{transform:translateY(-22px) scale(1.15)}}
+@keyframes shake{25%{transform:translateX(-10px)}75%{transform:translateX(10px)}}
+.bubble{background:var(--card);color:var(--ink);border-radius:20px;padding:10px 16px;display:inline-block;max-width:420px;margin-bottom:14px}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:12px}
+.b{font:inherit;font-weight:800;font-size:20px;border:0;border-radius:18px;padding:14px 18px;background:var(--bl);color:#fff;box-shadow:0 6px 0 rgba(0,0,0,.25);cursor:pointer;margin:6px 4px;touch-action:manipulation}
+.b:active{transform:translateY(4px);box-shadow:0 2px 0 rgba(0,0,0,.25)}
+.b:focus-visible,input:focus-visible,.card:focus-visible{outline:4px solid #fff;outline-offset:2px}
+.b.big{font-size:24px;padding:18px 20px;display:block;width:100%;margin:8px 0}
+.grid .b.big{margin:0}
+.y{background:var(--y);color:#3b2a00;box-shadow:0 6px 0 var(--yd)}
+.g{background:var(--ok)}.p{background:#8a63e8}.r{background:#ef6a4c}
+.b2{font:inherit;font-size:22px;border:0;border-radius:14px;padding:4px 12px;cursor:pointer}
+.pill{background:rgba(0,0,0,.28);border-radius:99px;padding:4px 14px;font-weight:800}
+.panel{background:var(--card);color:var(--ink);border-radius:26px;padding:18px;text-align:center;box-shadow:0 8px 0 rgba(0,0,0,.18);margin-top:8px}
+.card{font:inherit;color:#fff;border:0;border-radius:22px;padding:16px;background:linear-gradient(160deg,var(--g,#3aa0ff));box-shadow:0 6px 0 rgba(0,0,0,.25);text-align:center;position:relative;cursor:pointer;display:flex;flex-direction:column;align-items:center;gap:2px}
+.card:disabled{opacity:.5;cursor:not-allowed}
+.card .e{font-size:44px}.card b{font-size:22px}.card small{font-size:16px;font-weight:600}
+.med{position:absolute;top:6px;right:10px;font-size:26px}
+.chips{display:flex;flex-wrap:wrap;gap:6px;justify-content:center;margin:10px 0}
+.chip{border-radius:10px;padding:2px 10px;background:var(--soft);border:2px solid var(--line)}
+.chip.s1{background:#ffe9a8;color:#3b2a00;border-color:var(--y)}.chip.s2{background:#b8f0d3;color:#0b4a2b;border-color:var(--ok)}
+.tip{background:var(--soft);border-radius:14px;padding:8px 12px}
+.q{font-size:clamp(44px,13vw,76px);font-weight:800;margin:6px 0}
+.opts{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.opts .b.big{margin:0;background:var(--bl)}
+input{font:inherit;font-weight:800;font-size:36px;width:min(220px,80%);text-align:center;border:4px solid var(--line);border-radius:16px;padding:6px;background:var(--soft);color:var(--ink)}
+.bar{height:16px;border-radius:99px;background:rgba(0,0,0,.28);overflow:hidden;margin:8px 0}
+.bar i{display:block;height:100%;background:var(--y);transition:width .4s}
+.qtop{display:flex;gap:8px;justify-content:center}
+.fb{margin-top:12px;border-radius:16px;padding:10px;font-size:20px}
+.fb.ok{background:#b8f0d3;color:#0b4a2b}.fb.no{background:#ffe0e0;color:#5c1218}
+.dots{display:grid;gap:3px;width:min(220px,80%);margin:8px auto}
+.dots i{aspect-ratio:1;border-radius:50%;background:var(--bl);display:block}
+.row{display:flex;align-items:center;gap:8px;justify-content:center;padding:2px}
+.row button.t{font:inherit;font-weight:800;font-size:22px;background:var(--soft);color:var(--ink);border:2px solid var(--line);border-radius:12px;padding:2px 12px;cursor:pointer;min-width:190px}
+.pad{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;max-width:300px;margin:10px auto}.pad .b{margin:0;font-size:26px;padding:10px}
+.kb{display:grid;grid-template-columns:repeat(9,1fr);gap:4px;margin:10px 0}.kb .b{margin:0;padding:8px 0;font-size:18px}
+.stars{font-size:48px}
+.pb{display:flex;align-items:center;gap:8px;margin:6px 0;text-align:left}
+.pb .tr{flex:1;height:18px;background:var(--soft);border-radius:99px;overflow:hidden}.pb .tr i{display:block;height:100%;background:var(--ok)}
+.stat{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:8px;margin:10px 0}
+.stat div{background:var(--soft);border-radius:14px;padding:8px}.stat b{display:block;font-size:26px}
+.ac{opacity:.35;filter:grayscale(1)}.ac.on{opacity:1;filter:none}
+#fx i{position:fixed;top:-20px;width:10px;height:14px;z-index:9;animation:fall 2s linear forwards;pointer-events:none}
+@keyframes fall{to{transform:translateY(110vh) rotate(720deg)}}
+#toast{position:fixed;left:50%;bottom:24px;transform:translate(-50%,120px);background:#22304a;color:#fff;padding:10px 20px;border-radius:99px;transition:.3s;z-index:10;text-align:center}
+#toast.on{transform:translate(-50%,0)}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style></head><body>
+<div id="top"></div><main id="app"></main><div id="fx"></div><div id="toast" role="status"></div>
+<script>
+const $=s=>document.querySelector(s),R=n=>Math.floor(Math.random()*n),P=a=>a[R(a.length)];
+const KEY='mestre-tabuada-v1';
+const def=()=>({coin:0,star:0,f:{},q:0,ok:0,er:0,secs:0,rec:[],m:{},w:{},ch:['🦊'],cur:'🦊',title:false,snd:true,name:'',day:'',bs:0,ach:{}});
+let S,T,V={},sure=0;
+try{S=Object.assign(def(),JSON.parse(localStorage.getItem(KEY)||'{}'))}catch(e){S=def()}
+S.rec=S.rec.map(v=>typeof v=='number'?{n:'Jogador',s:v}:v);
+const save=()=>{try{localStorage.setItem(KEY,JSON.stringify(S))}catch(e){}};
+const W={2:['A Floresta dos Números','🌳','#7ed957,#2e9e5b'],3:['O Castelo da Multiplicação','🏰','#c9a0ff,#6a4bd8'],4:['A Ilha dos Desafios','🏝️','#6fe0ff,#1f8fd8'],5:['A Montanha Matemática','⛰️','#cfd9e6,#6b86a8'],6:['O Reino dos Cálculos','👑','#ffd36b,#e8892b'],7:['O Planeta dos Números','🪐','#a58bff,#2b2d8f'],8:['A Cidade da Matemática','🏙️','#8fd3ff,#4a6fa5'],9:['O Templo dos Resultados','🏛️','#ffcf99,#c9732b'],10:['O Desafio Supremo','🏆','#ff9ab0,#d6336c']};
+const TIP={2:'Multiplicar por 2 é dobrar! 2 × 6 é o dobro de 6.',3:'Conte de 3 em 3: 3, 6, 9, 12, 15…',4:'É o dobro do dobro! 4 × 6 = dobro de 12.',5:'Os resultados terminam sempre em 0 ou 5.',6:'6 × n é o dobro de 3 × n.',7:'Conte de 7 em 7. Truque: 5, 6, 7, 8 → 56 = 7 × 8.',8:'8 × n é o dobro de 4 × n.',9:'Os números do resultado somam 9: 9 × 4 = 36 (3 + 6 = 9).',10:'É só colocar um zero no final do número!'};
+const CH=[['🦊',0],['🐼',30],['🦁',60],['🐸',100],['🦄',150],['🐙',200],['🤖',300],['🐲',400]];
+const A=[['Primeiro acerto','🌱',s=>s.ok>=1],['50 acertos','🥉',s=>s.ok>=50],['200 acertos','🥈',s=>s.ok>=200],['500 acertos','🥇',s=>s.ok>=500],['Sequência de 10','🔥',s=>s.bs>=10],['Sequência de 20','🚀',s=>s.bs>=20],['Primeira medalha','🏅',s=>Object.keys(s.m).length>=1],['Cinco medalhas','🎖️',s=>Object.keys(s.m).length>=5],['Todas as medalhas','👑',s=>Object.keys(s.m).length>=9],['150 pontos no tempo','⏱️',s=>(s.rec[0]?s.rec[0].s:0)>=150],['Mestre da Tabuada','🎓',s=>s.title]];
+const fs=(a,b)=>S.f[a+'x'+b]||{s:0,o:0,e:0};
+const mcount=t=>[...Array(10)].filter((_,i)=>fs(t,i+1).s>=2).length;
+const mastered=t=>mcount(t)==10;
+const unlocked=t=>t==2||S.m[t-1];
+const allM=()=>Object.keys(W).every(t=>S.m[t]);
+const bg=t=>document.body.style.background=`linear-gradient(160deg,${W[t][2]}) fixed`;
+const rec=(a,b,ok)=>{const k=a+'x'+b,f=S.f[k]=S.f[k]||{s:0,o:0,e:0};ok?(f.o++,f.s=Math.min(4,f.s+1)):(f.e++,f.s=Math.max(0,f.s-1));S.q++;ok?S.ok++:S.er++;save()};
+let ac;const beep=(f,d=.12,t='sine')=>{if(!S.snd)return;try{ac=ac||new AudioContext();const o=ac.createOscillator(),g=ac.createGain();o.type=t;o.frequency.value=f;g.gain.value=.07;o.connect(g);g.connect(ac.destination);o.start();o.stop(ac.currentTime+d)}catch(e){}};
+const sfx={ok:()=>{beep(660);setTimeout(()=>beep(880),90)},no:()=>beep(240,.2,'triangle'),win:()=>[523,659,784,1047].forEach((f,i)=>setTimeout(()=>beep(f,.15),i*110))};
+const say=(a,b)=>{try{speechSynthesis.cancel();const u=new SpeechSynthesisUtterance(`${a} vezes ${b} é igual a ${a*b}`);u.lang='pt-BR';speechSynthesis.speak(u)}catch(e){}};
+function conf(n=40){const fx=$('#fx');for(let i=0;i<n;i++){const s=document.createElement('i');s.style.cssText=`left:${R(100)}%;background:hsl(${R(360)} 90% 60%);animation-duration:${1.5+Math.random()*1.5}s;animation-delay:${Math.random()*.4}s`;fx.appendChild(s);setTimeout(()=>s.remove(),3600)}}
+function toast(m){const t=$('#toast');t.textContent=m;t.className='on';clearTimeout(toast.h);toast.h=setTimeout(()=>t.className='',2800)}
+function check(){A.forEach(([n,e,f],i)=>{if(!S.ach[i]&&f(S)){S.ach[i]=1;save();toast(`🏆 Conquista: ${n}!`);conf(30)}})}
+function topbar(){$('#top').innerHTML=`<button class=b2 onclick="go('menu')" aria-label="Início">🏠</button><span>${S.cur}</span><span class=pill>🪙 ${S.coin}</span><span class=pill>⭐ ${S.star}</span>`}
+function go(n,a){clearInterval(T);sure=0;V[n](a);topbar();window.scrollTo(0,0)}
+const panel=(e,h,p,b)=>{$('#app').innerHTML=`<div class=panel><div class=mascot>${e}</div><h2>${h}</h2>${p}${b}</div>`};
+const dots=(a,b)=>`<div class=dots style="grid-template-columns:repeat(${a},1fr)" aria-hidden=true>${'<i></i>'.repeat(a*b)}</div>`;
+const why=(a,b)=>`Pense: ${a} repetido ${b} ${b==1?'vez':'vezes'} → ${Array(b).fill(a).join(' + ')} = ${a*b}`;
+const wt=([a,b])=>{const f=fs(a,b);return 1+(4-f.s)*1.5+Math.min(f.e,5)};
+function pick(pool,prev){const ws=pool.map(wt),sum=ws.reduce((x,y)=>x+y,0);for(let k=0;k<9;k++){let r=Math.random()*sum,i=0;while(r>ws[i]&&i<ws.length-1){r-=ws[i];i++}const p=pool[i];if(!prev||p[0]!=prev[0]||p[1]!=prev[1]||pool.length==1)return p}return P(pool)}
+const opts=(a,b)=>{const c=a*b,s=new Set([c]);[(a+1)*b,(a-1)*b,a*(b+1),a*(b-1),c+10,c-10,c+2,c-2,c+1,c-1].sort(()=>Math.random()-.5).forEach(v=>{if(v>0&&s.size<4)s.add(v)});while(s.size<4)s.add(c+3+R(20));return[...s].sort(()=>Math.random()-.5)};
+function NK(c){const i=$('#nm');if(!i)return;let v=i.value;if(c=='⌫')v=v.slice(0,-1);else if(v.length<12){const up=!v||v.slice(-1)==' ';v+=c==' '?' ':(up?c:c.toLowerCase())}i.value=v}
+function K(d){const i=$('#inp');if(!i)return;if(d=='⌫')i.value=i.value.slice(0,-1);else if(d=='✔')Z();else if(i.value.length<3)i.value+=d}
+document.addEventListener('keydown',e=>{if(!$('#inp'))return;if(/^[0-9]$/.test(e.key))K(e.key);else if(e.key=='Backspace')K('⌫');else if(e.key=='Enter')K('✔')});
+const tbl=t=>[...Array(10)].map((_,i)=>[t,i+1]);
+const all=()=>{let p=[];for(let t=2;t<=10;t++)p=p.concat(tbl(t));return p};
+
+function quiz(o){
+ let Q=[],cur,prev,lock,done,left=o.time||0,res={n:0,ok:0,st:0,max:0,sc:0,by:{}};
+ const mk=([a,b])=>({a,b,first:1,flip:R(2)});
+ if(o.list)Q=o.list.map(mk);else if(!o.time)for(let i=0;i<o.n;i++){prev=pick(o.pool,prev);Q.push(mk(prev))}
+ clearInterval(T);bg(o.bg||2);
+ const fin=()=>{done=1;clearInterval(T);o.end(res)};
+ const upd=()=>{const b=$('#bar'),t=$('#tm');if(b&&o.time)b.style.width=left/o.time*100+'%';if(t)t.textContent=left};
+ if(o.time)T=setInterval(()=>{left--;if(left<=0)fin();else upd()},1000);
+ const show=window.NX=()=>{
+  if(done)return;
+  if(!Q.length){if(!o.time)return fin();prev=pick(o.pool,prev);Q.push(mk(prev))}
+  cur=Q.shift();lock=0;const{a,b}=cur,[x,y]=cur.flip?[b,a]:[a,b],tot=o.list?o.list.length:o.n;
+  cur.typed=!o.time&&Math.random()<(fs(a,b).s>=2?.5:.15);
+  $('#app').innerHTML=`<div class=qtop><span class=pill>${o.time?`⏱️ <b id=tm>${left}</b>s · ${res.sc} pontos`:`Pergunta ${Math.min(res.n+1,tot)} de ${tot}`}</span>${res.st>=2?`<span class=pill>🔥 ${res.st}</span>`:''}</div><div class=bar><i id=bar style="width:${o.time?left/o.time*100:res.n/tot*100}%"></i></div><div class=panel><div class=mascot id=mc>${S.cur}</div><div class=q>${x} × ${y} = ?</div>${cur.typed?`<input id=inp readonly aria-label="Sua resposta"><div class=pad>${[1,2,3,4,5,6,7,8,9,'⌫',0,'✔'].map(d=>`<button class="b${d=='✔'?' y':''}" onclick="K('${d}')">${d}</button>`).join('')}</div>`:`<div class=opts>${opts(a,b).map(v=>`<button class="b big" onclick="Z(${v})">${v}</button>`).join('')}</div>`}<div id=fb></div></div>`;
+  
+ };
+ window.Z=v=>{
+  if(lock||done)return;
+  if(v===undefined){const i=$('#inp');if(!i||i.value==='')return;v=+i.value}
+  lock=1;const{a,b}=cur,ok=v===a*b;rec(a,b,ok);
+  if(cur.first){res.n++;const t=res.by[a]=res.by[a]||{n:0,ok:0};t.n++;if(ok){t.ok++;res.ok++}}
+  const mc=$('#mc'),fb=$('#fb');
+  if(ok){res.st++;res.max=Math.max(res.max,res.st);S.bs=Math.max(S.bs,res.st);S.coin+=2;
+   if(res.st%5==0){S.coin+=5;toast(`🔥 Sequência de ${res.st}! +5 moedas`);conf(25)}
+   if(o.time)res.sc+=10+(res.st>=3?res.st:0);
+   sfx.ok();mc.classList.add('hop');fb.innerHTML=`<div class="fb ok">${P(['Isso mesmo!','Muito bem!','Mandou bem!','Acertou!'])} ✅</div>`;setTimeout(show,o.time?250:900)}
+  else{res.st=0;sfx.no();mc.classList.add('shake');
+   if(cur.first&&!o.strict&&!o.time)Q.splice(Math.min(2,Q.length),0,{...cur,first:0,flip:R(2)});
+   if(o.strict||o.time){fb.innerHTML=`<div class="fb no">Era ${a*b}</div>`;setTimeout(show,o.time?600:800)}
+   else fb.innerHTML=`<div class="fb no"><b>Quase!</b> ${a} × ${b} = <b>${a*b}</b><br>${why(a,b)}<br><small>💡 ${TIP[a]}</small>${dots(a,b)}<button class="b" onclick="say(${a},${b})">🔊 Ouvir</button><button class="b y" onclick="NX()">Entendi, continuar</button><br><small>Vamos ver essa de novo daqui a pouco. Você consegue!</small></div>`}
+  save();upd();
+ };
+ show();
+}
+
+V.menu=()=>{const hi=Math.max(...Object.keys(W).filter(t=>unlocked(+t)));bg(hi);
+ $('#app').innerHTML=`<div class=hero><div class=mascot>${S.cur}</div><h1>Mestre da Tabuada</h1><p class=sub>A grande aventura dos números</p><div class=bubble>Oi, aventureiro(a)! Vamos dominar as tabuadas do 2 ao 10 juntos?</div></div>
+ <div class=grid><button class="b big y" onclick="go('map')">▶ JOGAR</button><button class="b big g" onclick="go('learn')">📖 APRENDER TABUADA</button><button class="b big p" onclick="startDaily()">📅 DESAFIO DIÁRIO ${S.day==today()?'✔':''}</button><button class="b big r" onclick="go('ach')">🏆 MINHAS CONQUISTAS</button><button class="b big" onclick="go('prog')">📊 MEU PROGRESSO</button><button class="b big" style="background:#6b7a99" onclick="go('set')">⚙️ CONFIGURAÇÕES</button></div>`};
+
+V.map=()=>{bg(2);
+ $('#app').innerHTML=`<h2>Escolha seu mundo</h2><div class=grid>${Object.keys(W).map(t=>{t=+t;const ok=unlocked(t),w=W[t];return`<button class=card ${ok?`onclick="go('world',${t})"`:'disabled'} style="--g:${w[2]}"><span class=e>${ok?w[1]:'🔒'}</span><b>Mundo ${t}</b><small>${w[0]}</small><span>${ok?'⭐'.repeat(S.w[t]||0)+'☆'.repeat(3-(S.w[t]||0)):'Ganhe 3 estrelas no Mundo '+(t-1)}</span>${S.m[t]?'<span class=med>🏅</span>':''}</button>`}).join('')}
+ <button class=card onclick="go('time')" style="--g:#ff9a3c,#e5484d"><span class=e>⏱️</span><b>Contra o tempo</b><small>60 segundos, todas as tabuadas</small></button>
+ <button class=card ${allM()?`onclick="startFinal()"`:'disabled'} style="--g:#ffd36b,#8a63e8"><span class=e>${allM()?'🎓':'🔒'}</span><b>Grande Desafio Final</b><small>${allM()?'Conquiste o título de Mestre!':'Domine os 9 mundos para liberar'}</small></button></div>`};
+
+V.world=t=>{bg(t);const w=W[t];
+ $('#app').innerHTML=`<div class=panel><div class=mascot>${w[1]}</div><h2>Mundo ${t}: ${w[0]}</h2><p>Tabuada do ${t} · ${'⭐'.repeat(S.w[t]||0)}${'☆'.repeat(3-(S.w[t]||0))}</p><p class=tip>Acerte as 10 perguntas sem errar nenhuma para ganhar 1 estrela. Com 3 estrelas, o próximo mundo abre!</p><div class=chips>${tbl(t).map(([a,b])=>`<span class="chip s${Math.min(fs(a,b).s,2)}">${a} × ${b}</span>`).join('')}</div><p class=tip>💡 ${TIP[t]}</p><button class="b big y" onclick="stage(${t})">COMEÇAR FASE</button><button class="b" onclick="go('learn',${t})">📖 Aprender a tabuada do ${t}</button></div>`};
+function stage(t){const pool=tbl(t);if(t>2)for(let i=0;i<4;i++)pool.push([2+R(t-2),1+R(10)]);quiz({pool,n:10,bg:t,end:r=>endStage(t,r)})}
+function endStage(t,r){const gain=r.ok>=r.n&&r.n>0&&(S.w[t]||0)<3?1:0,st=Math.min(3,(S.w[t]||0)+gain);S.w[t]=st;S.star+=gain;S.coin+=gain*5;
+ let nm=false;if(!S.m[t]&&st>=3){S.m[t]=nm=true}save();check();sfx.win();if(gain||nm)conf(90);
+ const need=tbl(t).filter(([a,b])=>fs(a,b).s<2).map(([a,b])=>`${a}×${b}`);
+ panel(nm?'🏅':S.cur,nm?`Você dominou a tabuada do ${t}!`:gain?'Perfeito! Você ganhou uma estrela!':'Quase lá! Vamos tentar de novo?',`<div class=stars>${[1,2,3].map(i=>i<=st?'⭐':'☆').join('')}</div><p>Acertos de primeira: ${r.ok} de ${r.n}. Maior sequência: ${r.max}.</p>${nm?`<p>${t<10?`O Mundo ${t+1} foi desbloqueado! ${W[t+1][1]}`:'Agora o Grande Desafio Final está liberado! 🎓'}</p>`:`<p>${gain?'Você ganhou 1 estrela! ⭐ ':'Para ganhar uma estrela, acerte as 10 perguntas de primeira, sem errar nenhuma. '}Faltam ${3-st} ${3-st==1?'estrela':'estrelas'} para abrir o próximo mundo.</p>`}`,
+ `<button class="b big y" onclick="stage(${t})">JOGAR DE NOVO</button>${nm&&t<10?`<button class=b onclick="go('world',${t+1})">Ir ao Mundo ${t+1}</button>`:''}<button class=b onclick="go('map')">Voltar ao mapa</button>`)}
+
+V.learn=t=>{bg(t||2);
+ if(!t)return $('#app').innerHTML=`<h2>Qual tabuada você quer estudar?</h2><div class=grid>${Object.keys(W).map(k=>`<button class=card onclick="go('learn',${k})" style="--g:${W[k][2]}"><span class=e>${W[k][1]}</span><b>Tabuada do ${k}</b><small>${mcount(+k)} de 10 dominadas</small>${S.m[k]?'<span class=med>🏅</span>':''}</button>`).join('')}</div>`;
+ $('#app').innerHTML=`<div class=panel><h2>Tabuada do ${t}</h2><p class=tip>💡 ${TIP[t]}</p><p><small>Toque em uma multiplicação para ver como ela funciona.</small></p>${tbl(t).map(([a,b])=>`<div class=row><button class=t onclick="vis(${a},${b})">${a} × ${b} = ${a*b}</button><button class=b2 onclick="say(${a},${b})" aria-label="Ouvir ${a} vezes ${b}">🔊</button></div>`).join('')}<div id=vis class=tip style="margin-top:10px">Escolha uma conta acima 👆</div><button class="b big y" onclick="learnQ(${t})">✏️ PRATICAR (5 perguntas)</button><button class=b onclick="go('learn')">Outras tabuadas</button></div>`};
+function vis(a,b){$('#vis').innerHTML=`<b>${a} × ${b} = ${a*b}</b><br>${b} ${b==1?'grupo':'grupos'} de ${a}<br>${Array(b).fill(a).join(' + ')} = ${a*b}${dots(a,b)}`;say(a,b)}
+function learnQ(t){quiz({pool:tbl(t),n:5,bg:t,end:r=>{let nm=0;check();
+ panel(nm?'🏅':S.cur,nm?`Medalha da tabuada do ${t}!`:'Treino concluído!',`<p>Você acertou ${r.ok} de ${r.n} de primeira.</p>`,`<button class="b big y" onclick="learnQ(${t})">Praticar de novo</button><button class=b onclick="go('learn',${t})">Voltar para a tabuada</button>`)}})}
+
+V.time=()=>{bg(4);
+ $('#app').innerHTML=`<div class=panel><div class=mascot>⏱️</div><h2>Desafio contra o tempo</h2><p>Responda o máximo que puder em 60 segundos! Acertos em sequência dão pontos extras.</p><h3>Quem vai jogar?</h3><input id=nm maxlength=12 value="${S.name}" placeholder="Digite seu nome" aria-label="Seu nome" autocomplete=off style="font-size:28px"><div class=kb>${[...'ABCDEFGHIJKLMNOPQRSTUVWXYZ','Á','Ã','É','Ê','Í','Ó','Õ','Ú','Ç'].map(c=>`<button class=b onclick="NK('${c}')">${c}</button>`).join('')}</div><button class=b onclick="NK('⌫')">⌫ Apagar</button><button class=b onclick="NK(' ')">Espaço</button><button class="b big y" onclick="startTime()">COMEÇAR</button><h3>🏅 Recordes</h3>${S.rec.length?S.rec.map((v,i)=>`<div>${i+1}º ${v.n}: <b>${v.s}</b> pontos</div>`).join(''):'<p>Ainda sem recordes. Seja o primeiro!</p>'}</div>`};
+function startTime(){const i=$('#nm');if(i){const n=i.value.trim();if(!n){toast('Digite seu nome para começar!');return}S.name=n;save()}quiz({pool:all(),time:60,bg:4,end:r=>{const nr=r.sc>0&&r.sc>(S.rec[0]?S.rec[0].s:0);S.rec.push({n:S.name,s:r.sc});S.rec.sort((a,b)=>b.s-a.s);S.rec=S.rec.slice(0,5);const c=Math.floor(r.sc/10);S.coin+=c;save();check();sfx.win();if(nr||r.sc>=100)conf(80);
+ panel('⏰',nr?'Novo recorde!':'Tempo esgotado!',`<p>${S.name}, você fez <b>${r.sc}</b> pontos com ${r.ok} acertos.<br>Maior sequência: ${r.max}. Ganhou ${c} moedas 🪙</p>`,`<button class="b big y" onclick="startTime()">TENTAR DE NOVO</button><button class=b onclick="go('time')">Ver recordes e trocar jogador</button><button class=b onclick="go('map')">Voltar ao mapa</button>`)}})}
+
+const today=()=>new Date().toISOString().slice(0,10);
+function startDaily(){let h=0;for(const c of today())h=Math.imul(31,h)+c.charCodeAt(0)|0;let x=h>>>0;const rnd=()=>(x=(x*1664525+1013904223)>>>0)/4294967296;
+ const list=[];for(let i=0;i<10;i++)list.push([2+Math.floor(rnd()*9),1+Math.floor(rnd()*10)]);
+ quiz({list,bg:6,end:r=>{const first=S.day!=today();if(first){S.day=today();S.coin+=20;S.star+=1}save();check();sfx.win();conf(60);
+ panel('📅','Desafio diário concluído!',`<p>Acertos de primeira: ${r.ok} de ${r.n}.</p><p>${first?'Você ganhou 20 moedas 🪙 e 1 estrela ⭐!':'Hoje você já pegou o prêmio. Volte amanhã para outro desafio!'}</p>`,`<button class="b big y" onclick="go('menu')">Voltar ao menu</button>`)}})}
+
+function startFinal(){const list=[];for(let t=2;t<=10;t++){const b=[1,2,3,4,5,6,7,8,9,10].sort(()=>Math.random()-.5).slice(0,4);b.forEach(v=>list.push([t,v]))}
+ list.sort(()=>Math.random()-.5);
+ quiz({list,strict:true,bg:10,end:r=>{const pct=Math.round(r.ok/r.n*100),weak=Object.keys(r.by).filter(t=>r.by[t].ok<3),some=Object.keys(r.by).filter(t=>r.by[t].ok<r.by[t].n),pass=pct>=90&&!weak.length;
+ if(pass){S.title=true;conf(160);sfx.win()}save();check();
+ const rc=(weak.length?weak:some);
+ pass?panel('🎓','VOCÊ É O MESTRE DA TABUADA!',`<div class=stars>🏆🏆🏆</div><p>Aproveitamento: <b>${pct}%</b> (${r.ok} de ${r.n}). Você dominou todas as tabuadas do 2 ao 10!</p>`,`<button class="b big y" onclick="go('menu')">Voltar ao menu</button>`)
+ :panel('💪','Ainda não foi desta vez!',`<p>Aproveitamento: <b>${pct}%</b> (precisa de 90% e pelo menos 3 de 4 em cada tabuada).</p><p>Recomendamos treinar: <b>${rc.map(t=>'tabuada do '+t).join(', ')||'mais um pouco de todas'}</b>. Você está quase lá!</p>`,`${rc.slice(0,3).map(t=>`<button class=b onclick="go('learn',${t})">📖 Estudar o ${t}</button>`).join('')}<button class="b big y" onclick="startFinal()">TENTAR O DESAFIO DE NOVO</button>`)}})}
+
+V.prog=()=>{bg(8);const n=Object.keys(S.m).length,pc=S.q?Math.round(S.ok/S.q*100):0;
+ const need=Object.entries(S.f).filter(([k,f])=>f.e>0&&f.s<2).sort((a,b)=>b[1].e-a[1].e).slice(0,14).map(([k])=>k.replace('x',' × '));
+ $('#app').innerHTML=`<div class=panel><h2>Meu progresso</h2><div class=stat><div><b>${n}/9</b>tabuadas concluídas</div><div><b>${S.q}</b>questões</div><div><b>${S.ok}</b>acertos</div><div><b>${S.er}</b>erros</div><div><b>${pc}%</b>aproveitamento</div><div><b>${Math.round(S.secs/60)} min</b>de aprendizagem</div></div>
+ ${Object.keys(W).map(t=>`<div class=pb><span style="width:80px">${S.m[t]?'🏅':'📘'} Tab. ${t}</span><div class=tr><i style="width:${mcount(+t)*10}%"></i></div><span>${mcount(+t)}/10</span></div>`).join('')}
+ <h3>Precisam de reforço</h3><div class=chips>${need.map(k=>`<span class="chip s1">${k}</span>`).join('')||'Nenhuma por enquanto. Continue assim! 🌟'}</div><h3>Medalhas</h3><div style="font-size:34px">${Object.keys(S.m).map(t=>`<span title="Tabuada do ${t}">🏅</span>`).join('')||'<small>Domine uma tabuada para ganhar a primeira!</small>'}</div></div>`};
+
+V.ach=()=>{bg(6);
+ $('#app').innerHTML=`<div class=panel><h2>Minhas conquistas</h2><div class=chips>${A.map(([n,e],i)=>`<span class="chip ac ${S.ach[i]?'on':''}" style="padding:8px 14px">${e} ${n}</span>`).join('')}</div><h3>Personagens</h3><p><small>Use suas moedas para desbloquear novos amigos!</small></p><div class=chips>${CH.map(([e,p])=>{const own=S.ch.includes(e);return`<button class="b ${S.cur==e?'g':''}" style="${own||S.coin>=p?'':'opacity:.5'}" onclick="pickCh('${e}',${p})"><span style="font-size:30px">${e}</span><br><small>${S.cur==e?'Escolhido':own?'Usar':'🪙 '+p}</small></button>`}).join('')}</div></div>`};
+function pickCh(e,p){if(!S.ch.includes(e)){if(S.coin<p)return toast(`Faltam ${p-S.coin} moedas para este amigo!`);S.coin-=p;S.ch.push(e);conf(30);sfx.win()}S.cur=e;save();go('ach')}
+
+V.set=()=>{bg(5);
+ $('#app').innerHTML=`<div class=panel><h2>Configurações</h2><button class=b onclick="S.snd=!S.snd;save();go('set')">${S.snd?'🔊 Sons ligados':'🔇 Sons desligados'}</button><p><small>Seu progresso é salvo automaticamente neste aparelho. Não precisa de cadastro.</small></p><button class="b r" onclick="reset()">${sure?'Tem certeza? Toque de novo para apagar tudo':'🗑️ Recomeçar do zero'}</button></div>`};
+function reset(){if(!sure){sure=1;return V.set()}S=def();save();sure=0;go('menu')}
+setInterval(()=>{if(!document.hidden){S.secs++;if(S.secs%10==0)save()}},1000);
+go('menu');
+</script></body></html>
